@@ -1,0 +1,81 @@
+select* from tab;
+
+show user
+
+select current_date from dual;
+
+show all
+
+select 60+40 from dual;
+
+create table student (Roll Number,Name varchar2(10),City varchar2(10) );
+
+Desc student
+
+select* from student;
+
+insert into student values(1,'Amit','Dehradun');
+insert into student values(2,'Kapil','Meerut');
+insert into student (Roll ,City) values (3,'Dehradun');
+insert into student (Roll ,Name) values (4,'Amit');
+insert into student (Roll ,City) values (5,'Dehradun');
+
+select* from student;
+
+ALTER TABLE student RENAME COLUMN Roll TO Rollno; // extra
+
+commit;
+
+Alter table student add Email varchar2(15);
+
+Desc student
+
+Update student set Email= 'Btech@gmail.com'; //all mails are set to given
+
+rollback; // Emails mod roll backed
+
+update student set Email = 'abc@gmail.com' where name= 'Amit';
+
+update student set Name='Rohit' where Rollno=3;
+
+update student set Name='Ayush' where Rollno=5;
+
+update student set City='Delhi' where Rollno=4;
+
+update student set Email='rohit@gmail.com' where Rollno=3;
+
+update student set Email='snush@gmail.com' where Rollno=5;
+
+insert into student values(6,'Malli','Dehradun','shee@gmail.com');
+insert into student values(7,'joy','Delhi','joy@gmail.com');
+insert into student values(8,'Sampath','chandigarh','nub@gmail.com');
+insert into student values(9,'Balodhi','Dehradun','lazy@gmail.com');
+insert into student values(10,'Purohit','Dehradun','shwty@gmail.com');
+
+commit;
+
+set linesize 500;
+
+set pagesize 10;
+
+set pause on
+
+Alter table student drop column name
+
+create table duplicate as select* from student;
+
+select* from duplicate;
+
+ select* from tab;
+
+truncate table student;           // Table content will be deleted but the structure will remain 
+
+rollback;    //table content will not come back because truncate is a ddl command and ddl commands auto commit
+
+drop table student;          // table will be deleted along with structure roll back will not work
+
+select* from tab;
+ 
+show user
+
+disc
