@@ -1,0 +1,210 @@
+show user
+
+create table Employee(EmpCode Number,Name varchar2(6),Salary Number);
+
+desc Employee;
+
+insert into employee values(101,'Amit',30000);
+insert into employee values(201,'Kapil',22000);
+insert into employee values(301,'Rohit',45000);
+insert into employee values(401,'Amit',27000);
+insert into employee values(401,'Amit',27000);
+
+commit;
+
+select* from employee;
+
+insert into employee values(901,'Bhattacharya ',33000);
+
+ERROR at line 1:
+ORA-12899: value too large for column "VIRUS"."EMPLOYEE"."NAME" (actual: 13,
+maximum: 6)
+
+coloumn name size max is 6 
+
+alter table employee modify Name varchar(25);  // Column name size increased to 25
+
+desc employee
+
+select* from table;
+
+insert into employee values(901,'Bhattacharya ',33000);
+
+select* from employee;
+
+alter table employee modify Name varchar(5);
+
+ERROR at line 1:
+ORA-01441: cannot decrease column length because some value is too big
+
+commit;
+
+Select name from employee;
+
+NAME
+-------------------------
+Amit
+Kapil
+Rohit
+Amit
+Amit
+Bhattacharya
+
+6 rows selected.
+
+Select name, name, name, name from employee;
+NAME                      NAME                      NAME
+------------------------- ------------------------- -------------------------
+NAME
+-------------------------
+Amit                      Amit                      Amit
+Amit
+
+Kapil                     Kapil                     Kapil
+Kapil
+
+Rohit                     Rohit                     Rohit
+Rohit
+
+
+set linesize 500;
+
+Select name, name, name, name from employee;
+
+
+NAME                      NAME                      NAME                      NAME
+------------------------- ------------------------- ------------------------- -------------------------
+Amit                      Amit                      Amit                      Amit
+Kapil                     Kapil                     Kapil                     Kapil
+Rohit                     Rohit                     Rohit                     Rohit
+Amit                      Amit                      Amit                      Amit
+Amit                      Amit                      Amit                      Amit
+Bhattacharya              Bhattacharya              Bhattacharya              Bhattacharya
+
+6 rows selected.
+
+
+Select name, empcode from employee order by salary;
+
+NAME                         EMPCODE
+------------------------- ----------
+Kapil                            201
+Amit                             401
+Amit                             401
+Amit                             101
+Bhattacharya                     901
+Rohit                            301
+
+6 rows selected.
+
+Select name, Salary, salary + 500 , salary-50000 from employee;
+
+NAME                          SALARY SALARY+500 SALARY-50000
+------------------------- ---------- ---------- ------------
+Amit                           30000      30500       -20000
+Kapil                          22000      22500       -28000
+Rohit                          45000      45500        -5000
+Amit                           27000      27500       -23000
+Amit                           27000      27500       -23000
+Bhattacharya                   33000      33500       -17000
+
+6 rows selected.
+
+Select sum(salary) from employee;
+
+SUM(SALARY)
+-----------
+     184000
+
+Select min(salary) from employee;
+
+MIN(SALARY)
+-----------
+      22000
+
+Select max(salary) from employee;
+
+MAX(SALARY)
+-----------
+      45000
+
+select name,salary,salary+50/100*salary from employee;
+
+
+NAME                          SALARY SALARY+50/100*SALARY
+------------------------- ---------- --------------------
+Amit                           30000                45000
+Kapil                          22000                33000
+Rohit                          45000                67500
+Amit                           27000                40500
+Amit                           27000                40500
+Bhattacharya                   33000                49500
+
+6 rows selected.
+
+create table NewEmp as select* from employee;
+
+desc newemp
+
+ Name                                                                                                                                                                                                                    Null?     Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ EMPCODE                                                                                                                                                                                                          NUMBER
+ NAME                                                                                                                                                                                                             VARCHAR2(25)
+ SALARY                                                                                                                                                                                                           NUMBER
+
+set linesize 100;
+
+desc newemp;
+
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EMPCODE                                                        NUMBER
+ NAME                                                           VARCHAR2(25)
+ SALARY                                                         NUMBER
+
+create table Emp2 as select * from employee where 1=0;   
+//put a always false condition to a copy of employee table as “Emp2” table with no (Zero) records.
+
+select* from tab;
+
+desc employee;
+
+desc newemp;
+
+desc emp2;
+
+create table MyTable as select name,salary from employee;
+
+select* from employee;
+
+select* from MyTable;
+
+select* from tab;
+
+commit;
+
+alter table newemp drop (name,empcode);
+
+select* from newemp;
+
+truncate table mytable;
+
+rollback;
+
+select* from MyTable;
+
+no rows selected
+
+drop table mytable;
+
+Table dropped.
+
+SQL> select* from MyTable;
+select* from MyTable
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+select* from tab;
+
+commit;
