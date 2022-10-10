@@ -1,0 +1,672 @@
+
+SQL> connect
+Enter user-name: virus
+Enter password:
+Connected.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DUPLICATE                      TABLE
+EMP2                           TABLE
+EMPLOYEE                       TABLE
+NEWEMP                         TABLE
+
+SQL> show user from dual;
+USER is "VIRUS"
+SP2-0158: unknown SHOW option "from"
+SP2-0158: unknown SHOW option "dual"
+
+SQL> create table Students(RollNo Number(6),Name varchar(15),City varchar(12),Pincode varchar(8),Age Number(2));
+
+Table created.
+
+SQL> desc Students
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLLNO                                             NUMBER(6)
+ NAME                                               VARCHAR2(15)
+ CITY                                               VARCHAR2(12)
+ PINCODE                                            VARCHAR2(8)
+ AGE                                                NUMBER(2)
+
+SQL> Insert into Students values(1,'Amit','Delhi','214213',21);
+
+1 row created.
+
+SQL> Insert into Students values(2,'Kumar','Bombay','',25);
+
+1 row created.
+
+SQL> Insert into Students values(3,'Kshitij','Madras','110101',16);
+
+1 row created.
+
+SQL> Insert into Students values(4,'Puneet','Calcutta','',18);
+
+1 row created.
+
+SQL> Insert into Students values(5,'Rohit','Delhi','502207',19);
+
+1 row created.
+
+SQL> Insert into Students values(6,'Karnal','Dehradun','',28);
+
+1 row created.
+
+SQL> Insert into Students values(7,'Shweta','Dehradun','98102',23);
+
+1 row created.
+
+SQL> Insert into Students values(8,'Mohit','Bombay','12434',22);
+
+1 row created.
+
+SQL> Insert into Students values(9,'Pankaj','Bombay','',17);
+
+1 row created.
+
+SQL> Insert into Students values(10,'Parul','dELhi','76312',24);
+
+1 row created.
+
+SQL> Insert into Students values(11,'Rohit','Baroda','12131',29);
+
+1 row created.
+
+
+
+SQL> select * from students
+  2  ;
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         2 Kumar           Bombay                        25
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         6 Karnal          Dehradun                      28
+         7 Shweta          Dehradun     98102            23
+         8 Mohit           Bombay       12434            22
+         9 Pankaj          Bombay                        17
+        10 Parul           dELhi        76312            24
+        11 Rohit           Baroda       12131            29
+
+11 rows selected.
+
+
+SQL> select * from students where City='Delhi';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         5 Rohit           Delhi        502207           19
+
+SQL> select * from students where Name like 'A%';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+
+SQL> select * from students where Name like '_a%';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         6 Karnal          Dehradun                      28
+         9 Pankaj          Bombay                        17
+        10 Parul           dELhi        76312            24
+
+SQL> select * from students where Name like '';
+
+no rows selected
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> select * from students where Name like '%it';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         5 Rohit           Delhi        502207           19
+         8 Mohit           Bombay       12434            22
+        11 Rohit           Baroda       12131            29
+
+SQL> select * from students where Name like '%t%';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         7 Shweta          Dehradun     98102            23
+         8 Mohit           Bombay       12434            22
+        11 Rohit           Baroda       12131            29
+
+7 rows selected.
+
+SQL> select * from students where Name like '%t%' and Name not like '%t';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         3 Kshitij         Madras       110101           16
+         7 Shweta          Dehradun     98102            23
+
+
+
+SQL> select * from students where Age>25 and City='Dehradun';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         6 Karnal          Dehradun                      28
+
+SQL> select unique City from students;
+
+CITY
+------------
+Dehradun
+Bombay
+Calcutta
+dELhi
+Delhi
+Baroda
+Madras
+
+7 rows selected.
+
+SQL> select Name from students order by name;
+
+NAME
+---------------
+Amit
+Karnal
+Kshitij
+Kumar
+Mohit
+Pankaj
+Parul
+Puneet
+Rohit
+Rohit
+Shweta
+
+11 rows selected.
+
+SQL> select * from students where Age<20 or City='Bombay';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         2 Kumar           Bombay                        25
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         8 Mohit           Bombay       12434            22
+         9 Pankaj          Bombay                        17
+
+6 rows selected.
+
+SQL> select * from students where City!='Dehradun';
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         2 Kumar           Bombay                        25
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         8 Mohit           Bombay       12434            22
+         9 Pankaj          Bombay                        17
+        10 Parul           dELhi        76312            24
+        11 Rohit           Baroda       12131            29
+
+9 rows selected.
+
+SQL> select upper(Name) from students;
+
+UPPER(NAME)
+---------------
+AMIT
+KUMAR
+KSHITIJ
+PUNEET
+ROHIT
+KARNAL
+SHWETA
+MOHIT
+PANKAJ
+PARUL
+ROHIT
+
+11 rows selected.
+
+SQL> select lower(City) from students;
+
+LOWER(CITY)
+------------
+delhi
+bombay
+madras
+calcutta
+delhi
+dehradun
+dehradun
+bombay
+bombay
+delhi
+baroda
+
+11 rows selected.
+
+
+SQL> select lower(name) , upper(city) from students ;
+
+LOWER(NAME)     UPPER(CITY)
+--------------- ------------
+amit            DELHI
+kumar           BOMBAY
+kshitij         MADRAS
+puneet          CALCUTTA
+rohit           DELHI
+karnal          DEHRADUN
+shweta          DEHRADUN
+mohit           BOMBAY
+pankaj          BOMBAY
+parul           DELHI
+rohit           BARODA
+
+11 rows selected.
+
+
+SQL> select * from students upper;
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         2 Kumar           Bombay                        25
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         6 Karnal          Dehradun                      28
+         7 Shweta          Dehradun     98102            23
+         8 Mohit           Bombay       12434            22
+         9 Pankaj          Bombay                        17
+        10 Parul           dELhi        76312            24
+        11 Rohit           Baroda       12131            29
+
+11 rows selected.
+
+SQL> set linesize 500;
+SQL> select upper(Rollno),upper(name),upper(city),upper(pincode),upper(age) from students;
+
+UPPER(ROLLNO)                            UPPER(NAME)     UPPER(CITY)  UPPER(PI UPPER(AGE)
+---------------------------------------- --------------- ------------ -------- ----------------------------------------
+1                                        AMIT            DELHI        214213   21
+2                                        KUMAR           BOMBAY                25
+3                                        KSHITIJ         MADRAS       110101   16
+4                                        PUNEET          CALCUTTA              18
+5                                        ROHIT           DELHI        502207   19
+6                                        KARNAL          DEHRADUN              28
+7                                        SHWETA          DEHRADUN     98102    23
+8                                        MOHIT           BOMBAY       12434    22
+9                                        PANKAJ          BOMBAY                17
+10                                       PARUL           DELHI        76312    24
+11                                       ROHIT           BARODA       12131    29
+
+11 rows selected.
+
+SQL> select Rollno,upper(name),upper(city),upper(pincode),upper(age) from students;
+
+    ROLLNO UPPER(NAME)     UPPER(CITY)  UPPER(PI UPPER(AGE)
+---------- --------------- ------------ -------- ----------------------------------------
+         1 AMIT            DELHI        214213   21
+         2 KUMAR           BOMBAY                25
+         3 KSHITIJ         MADRAS       110101   16
+         4 PUNEET          CALCUTTA              18
+         5 ROHIT           DELHI        502207   19
+         6 KARNAL          DEHRADUN              28
+         7 SHWETA          DEHRADUN     98102    23
+         8 MOHIT           BOMBAY       12434    22
+         9 PANKAJ          BOMBAY                17
+        10 PARUL           DELHI        76312    24
+        11 ROHIT           BARODA       12131    29
+
+11 rows selected.
+
+SQL> select * from students where Pincode is null;
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         2 Kumar           Bombay                        25
+         4 Puneet          Calcutta                      18
+         6 Karnal          Dehradun                      28
+         9 Pankaj          Bombay                        17
+
+
+
+SQL> Insert into students values(12,'Gaurav','Rampur',312125,null);
+
+1 row created.
+
+SQL> Insert into students values(null,'Manish','',314136,null);
+
+1 row created.
+
+SQL> Insert into students values(14,'Manish','',319143,29);
+
+1 row created.
+
+SQL> Insert into students values(15,'','Gwaliar',312125,25);
+
+1 row created.
+
+SQL> update students set Rollno=13 where name='Manish';
+
+2 rows updated.
+
+SQL> select * from students;
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         2 Kumar           Bombay                        25
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         6 Karnal          Dehradun                      28
+         7 Shweta          Dehradun     98102            23
+         8 Mohit           Bombay       12434            22
+         9 Pankaj          Bombay                        17
+        10 Parul           dELhi        76312            24
+        11 Rohit           Baroda       12131            29
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+        12 Gaurav          Rampur       312125
+        13 Manish                       314136
+        13 Manish                       319143           29
+        15                 Gwaliar      312125           25
+
+15 rows selected.
+
+
+SQL> update students set Rollno=14 , name='Aviral' where pincode=319143;
+
+1 row updated.
+
+SQL> select * from students;
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           21
+         2 Kumar           Bombay                        25
+         3 Kshitij         Madras       110101           16
+         4 Puneet          Calcutta                      18
+         5 Rohit           Delhi        502207           19
+         6 Karnal          Dehradun                      28
+         7 Shweta          Dehradun     98102            23
+         8 Mohit           Bombay       12434            22
+         9 Pankaj          Bombay                        17
+        10 Parul           dELhi        76312            24
+        11 Rohit           Baroda       12131            29
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+        12 Gaurav          Rampur       312125
+        13 Manish                       314136
+        14 Aviral                       319143           29
+        15                 Gwaliar      312125           25
+
+15 rows selected.
+
+SQL> update students set name='Abhijeet' where Rollno=15;
+
+1 row updated.
+
+
+SQL> update students set City='Meerut' where Rollno=13;
+
+1 row updated.
+
+SQL> update students set City='Meerut' where Rollno=15;
+
+1 row updated.
+
+
+SQL> update students set Age=Age+3;
+
+15 rows updated.
+
+SQL> update students set Age=25 where city='Meerut';
+
+2 rows updated.
+
+SQL> select * from students;
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+         1 Amit            Delhi        214213           24
+         2 Kumar           Bombay                        28
+         3 Kshitij         Madras       110101           19
+         4 Puneet          Calcutta                      21
+         5 Rohit           Delhi        502207           22
+         6 Karnal          Dehradun                      31
+         7 Shweta          Dehradun     98102            26
+         8 Mohit           Bombay       12434            25
+         9 Pankaj          Bombay                        20
+        10 Parul           dELhi        76312            27
+        11 Rohit           Baroda       12131            32
+
+    ROLLNO NAME            CITY         PINCODE         AGE
+---------- --------------- ------------ -------- ----------
+        12 Gaurav          Rampur       312125
+        13 Manish          Meerut       314136           25
+        14 Aviral                       319143           32
+        15 Abhijeet        Meerut       312125           25
+
+15 rows selected.
+
+SQL> alter table students add Balance number;
+
+Table altered.
+
+
+SQL> update students set Balance=20000;
+
+15 rows updated.
+
+SQL> select * from students;
+
+    ROLLNO NAME            CITY         PINCODE         AGE    BALANCE
+---------- --------------- ------------ -------- ---------- ----------
+         1 Amit            Delhi        214213           24      20000
+         2 Kumar           Bombay                        28      20000
+         3 Kshitij         Madras       110101           19      20000
+         4 Puneet          Calcutta                      21      20000
+         5 Rohit           Delhi        502207           22      20000
+         6 Karnal          Dehradun                      31      20000
+         7 Shweta          Dehradun     98102            26      20000
+         8 Mohit           Bombay       12434            25      20000
+         9 Pankaj          Bombay                        20      20000
+        10 Parul           dELhi        76312            27      20000
+        11 Rohit           Baroda       12131            32      20000
+
+    ROLLNO NAME            CITY         PINCODE         AGE    BALANCE
+---------- --------------- ------------ -------- ---------- ----------
+        12 Gaurav          Rampur       312125                   20000
+        13 Manish          Meerut       314136           25      20000
+        14 Aviral                       319143           32      20000
+        15 Abhijeet        Meerut       312125           25      20000
+
+15 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> update students set Balance=Balance+500 where city='Bombay' or city='Delhi';
+
+5 rows updated.
+
+SQL> select Balance from students;
+
+   BALANCE
+----------
+     20500
+     20500
+     20000
+     20000
+     20500
+     20000
+     20000
+     20500
+     20500
+     20000
+     20000
+
+   BALANCE
+----------
+     20000
+     20000
+     20000
+     20000
+
+15 rows selected.
+
+SQL> select sum(Balance) from students;
+
+SUM(BALANCE)
+------------
+      302500
+
+SQL> select max(Balance) from students;
+
+MAX(BALANCE)
+------------
+       20500
+
+                                                                                            NUMBER
+
+SQL> set linesize 100;
+SQL> desc students
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ROLLNO                                                         NUMBER(6)
+ NAME                                                           VARCHAR2(15)
+ CITY                                                           VARCHAR2(12)
+ PINCODE                                                        VARCHAR2(8)
+ AGE                                                            NUMBER(2)
+ BALANCE                                                        NUMBER
+
+SQL> alter table students modify city varchar2(10);
+
+Table altered.
+
+SQL> create table student2 as select* from students;
+
+Table created.
+
+SQL> select* from student2
+  2  ;
+
+    ROLLNO NAME            CITY       PINCODE         AGE    BALANCE
+---------- --------------- ---------- -------- ---------- ----------
+         1 Amit            Delhi      214213           24      20500
+         2 Kumar           Bombay                      28      20500
+         3 Kshitij         Madras     110101           19      20000
+         4 Puneet          Calcutta                    21      20000
+         5 Rohit           Delhi      502207           22      20500
+         6 Karnal          Dehradun                    31      20000
+         7 Shweta          Dehradun   98102            26      20000
+         8 Mohit           Bombay     12434            25      20500
+         9 Pankaj          Bombay                      20      20500
+        10 Parul           dELhi      76312            27      20000
+        11 Rohit           Baroda     12131            32      20000
+
+    ROLLNO NAME            CITY       PINCODE         AGE    BALANCE
+---------- --------------- ---------- -------- ---------- ----------
+        12 Gaurav          Rampur     312125                   20000
+        13 Manish          Meerut     314136           25      20000
+        14 Aviral                     319143           32      20000
+        15 Abhijeet        Meerut     312125           25      20000
+
+15 rows selected.
+
+SQL> delete from student2 where age>=25;
+
+9 rows deleted.
+
+SQL> select* from student2;
+
+    ROLLNO NAME            CITY       PINCODE         AGE    BALANCE
+---------- --------------- ---------- -------- ---------- ----------
+         1 Amit            Delhi      214213           24      20500
+         3 Kshitij         Madras     110101           19      20000
+         4 Puneet          Calcutta                    21      20000
+         5 Rohit           Delhi      502207           22      20500
+         9 Pankaj          Bombay                      20      20500
+        12 Gaurav          Rampur     312125                   20000
+
+6 rows selected.
+
+SQL> alter table student2 rename to Newstudent;
+
+Table altered.
+
+SQL> truncate table newstudent;
+
+Table truncated.
+
+SQL> drop table newstudent;
+
+Table dropped.
+
+SQL> create table newstudent as select* from students;
+
+Table created.
+
+SQL> drop table newstudent;
+
+Table dropped.
+
+SQL> create table newstudent as select* from students where 1=2;
+
+Table created.
+
+SQL> create table mca as select rollno,name,balance from students;
+
+Table created.
+
+SQL> select* from mca;
+
+    ROLLNO NAME               BALANCE
+---------- --------------- ----------
+         1 Amit                 20500
+         2 Kumar                20500
+         3 Kshitij              20000
+         4 Puneet               20000
+         5 Rohit                20500
+         6 Karnal               20000
+         7 Shweta               20000
+         8 Mohit                20500
+         9 Pankaj               20500
+        10 Parul                20000
+        11 Rohit                20000
+
+    ROLLNO NAME               BALANCE
+---------- --------------- ----------
+        12 Gaurav               20000
+        13 Manish               20000
+        14 Aviral               20000
+        15 Abhijeet             20000
+
+15 rows selected.
