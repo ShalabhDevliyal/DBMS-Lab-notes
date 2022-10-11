@@ -1,0 +1,276 @@
+
+SQL> connect
+Enter user-name: virus
+Enter password:
+Connected.
+SQL> select* from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DUPLICATE                      TABLE
+EMP2                           TABLE
+EMPLOYEE                       TABLE
+MCA                            TABLE
+NEWEMP                         TABLE
+NEWSTUDENT                     TABLE
+STUDENTS                       TABLE
+
+7 rows selected.
+
+                                                                                                                                                                                               
+
+
+SQL> create table Car(ModelNo number primary key,ModelName varchar2(20) unique,Company varchar2(20) not null,EngineCapacity number check(EngineCapacity>1000),Color varchar2(10),Doors number check(Doors>1),Weight number check(Weight>1000),TopSpeed number check(TopSpeed<500),RPM number check(RPM>5000),CostPrice number,SalePrice number);
+
+Table created.
+
+SQL> desc car
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MODELNO                                   NOT NULL NUMBER
+ MODELNAME                                          VARCHAR2(20)
+ COMPANY                                   NOT NULL VARCHAR2(20)
+ ENGINECAPACITY                                     NUMBER
+ COLOR                                              VARCHAR2(10)
+ DOORS                                              NUMBER
+ WEIGHT                                             NUMBER
+ TOPSPEED                                           NUMBER
+ RPM                                                NUMBER
+ COSTPRICE                                          NUMBER
+ SALEPRICE                                          NUMBER
+
+
+SQL> insert into car values(1,'Huracan','Lamborghini',5204,'Yellow',2,1542,325,8000,32000000,42000000);
+
+1 row created.
+
+SQL> insert into car values(2,'Scross','Maruti',3000,'Blue',4,2000,180,7000,500000,700000);
+
+1 row created.
+
+SQL> insert into car values(3,'CityRS','Honda',2500,'White',4,2000,200,7500,700000,900000);
+
+1 row created.
+
+SQL> insert into car values(4,'Sonata','Hundai',2700,'Black',4,1300,250,7500,1000000,1900000);
+
+1 row created.
+
+SQL> insert into car values(5,'Chiron','Bugatti',8200,'Red',2,2200,491,6000,75000000,150000000);
+
+1 row created.
+
+SQL> insert into car values(6,'Swift','Maruti Suzuki',1800,'Purple',4,2100,200,6000,750000,1500000);
+
+1 row created.
+
+SQL> insert into car values(7,'Etios','Toyota',1800,'Brown',4,2000,170,6000,300000,400000);
+
+1 row created.
+
+SQL> set linesize 500
+
+SQL> select* from car;
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 Huracan              Lamborghini                    5204 Yellow              2       1542        325       8000   32000000   42000000
+         2 Scross               Maruti                         3000 Blue                4       2000        180       7000     500000     700000
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+         4 Sonata               Hundai                         2700 Black               4       1300        250       7500    1000000    1900000
+         5 Chiron               Bugatti                        8200 Red                 2       2200        491       6000   75000000  150000000
+         6 Swift                Maruti Suzuki                  1800 Purple              4       2100        200       6000     750000    1500000
+         7 Etios                Toyota                         1800 Brown               4       2000        170       6000     300000     400000
+
+7 rows selected.
+
+SQL> select ModelName from car where company='Maruti';
+
+MODELNAME
+--------------------
+Scross
+
+SQL> Select* from car where EngineCapacity>2000;
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 Huracan              Lamborghini                    5204 Yellow              2       1542        325       8000   32000000   42000000
+         2 Scross               Maruti                         3000 Blue                4       2000        180       7000     500000     700000
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+         4 Sonata               Hundai                         2700 Black               4       1300        250       7500    1000000    1900000
+         5 Chiron               Bugatti                        8200 Red                 2       2200        491       6000   75000000  150000000
+
+
+SQL> Select* from car where Color='White';
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+
+SQL> Select* from car where CostPrice>400000;
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 Huracan              Lamborghini                    5204 Yellow              2       1542        325       8000   32000000   42000000
+         2 Scross               Maruti                         3000 Blue                4       2000        180       7000     500000     700000
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+         4 Sonata               Hundai                         2700 Black               4       1300        250       7500    1000000    1900000
+         5 Chiron               Bugatti                        8200 Red                 2       2200        491       6000   75000000  150000000
+         6 Swift                Maruti Suzuki                  1800 Purple              4       2100        200       6000     750000    1500000
+
+6 rows selected.
+
+SQL> Select CostPrice,SalePrice , SalePrice-CostPrice from car;
+
+ COSTPRICE  SALEPRICE SALEPRICE-COSTPRICE
+---------- ---------- -------------------
+  32000000   42000000            10000000
+    500000     700000              200000
+    700000     900000              200000
+   1000000    1900000              900000
+  75000000  150000000            75000000
+    750000    1500000              750000
+    300000     400000              100000
+
+7 rows selected.
+
+SQL> select ModelName from car order by ModelName;
+
+MODELNAME
+--------------------
+Chiron
+CityRS
+Etios
+Huracan
+Scross
+Sonata
+Swift
+
+7 rows selected.
+
+SQL> create table Vechile as select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where 1=0;
+
+Table created.
+
+SQL> desc vechile
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ TOPSPEED                                                       NUMBER
+ DOORS                                                          NUMBER
+ COSTPRICE                                                      NUMBER
+ MODELNAME                                                      VARCHAR2(20)
+ COMPANY                                               NOT NULL VARCHAR2(20)
+ RPM                                                            NUMBER
+ ENGINECAPACITY                                                 NUMBER
+ COLOR                                                          VARCHAR2(10)
+ MODELNO                                                        NUMBER
+ WEIGHT                                                         NUMBER
+ SALEPRICE                                                      NUMBER
+
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=7;
+
+1 row created.
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=2;
+
+1 row created.
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=4;
+
+1 row created.
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=6;
+
+1 row created.
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=1;
+
+1 row created.
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=5;
+
+1 row created.
+
+SQL> insert into vechile select TopSpeed,Doors,CostPrice,ModelName,Company,RPM,EngineCapacity,Color,ModelNo,Weight,SalePrice from car where ModelNo=3;
+
+1 row created.
+
+
+SQL> select * from vechile;
+
+  TOPSPEED      DOORS  COSTPRICE MODELNAME            COMPANY                     RPM ENGINECAPACITY COLOR         MODELNO     WEIGHT  SALEPRICE
+---------- ---------- ---------- -------------------- -------------------- ---------- -------------- ---------- ---------- ---------- ----------
+       170          4     300000 Etios                Toyota                     6000           1800 Brown               7       2000     400000
+       180          4     500000 Scross               Maruti                     7000           3000 Blue                2       2000     700000
+       250          4    1000000 Sonata               Hundai                     7500           2700 Black               4       1300    1900000
+       200          4     750000 Swift                Maruti Suzuki              6000           1800 Purple              6       2100    1500000
+       325          2   32000000 Huracan              Lamborghini                8000           5204 Yellow              1       1542   42000000
+       491          2   75000000 Chiron               Bugatti                    6000           8200 Red                 5       2200  150000000
+       200          4     700000 CityRS               Honda                      7500           2500 White               3       2000     900000
+
+7 rows selected.
+
+
+SQL> select ModelName from car where company='Maruti';
+
+MODELNAME
+--------------------
+Scross
+
+SQL> Select* from car where EngineCapacity>2000;
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 Huracan              Lamborghini                    5204 Yellow              2       1542        325       8000   32000000   42000000
+         2 Scross               Maruti                         3000 Blue                4       2000        180       7000     500000     700000
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+         4 Sonata               Hundai                         2700 Black               4       1300        250       7500    1000000    1900000
+         5 Chiron               Bugatti                        8200 Red                 2       2200        491       6000   75000000  150000000
+
+SQL> Select* from car where Color='White';
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+
+SQL> Select* from car where CostPrice>400000;
+
+   MODELNO MODELNAME            COMPANY              ENGINECAPACITY COLOR           DOORS     WEIGHT   TOPSPEED        RPM  COSTPRICE  SALEPRICE
+---------- -------------------- -------------------- -------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+         1 Huracan              Lamborghini                    5204 Yellow              2       1542        325       8000   32000000   42000000
+         2 Scross               Maruti                         3000 Blue                4       2000        180       7000     500000     700000
+         3 CityRS               Honda                          2500 White               4       2000        200       7500     700000     900000
+         4 Sonata               Hundai                         2700 Black               4       1300        250       7500    1000000    1900000
+         5 Chiron               Bugatti                        8200 Red                 2       2200        491       6000   75000000  150000000
+         6 Swift                Maruti Suzuki                  1800 Purple              4       2100        200       6000     750000    1500000
+
+6 rows selected.
+
+SQL> Select CostPrice,SalePrice , SalePrice-CostPrice from car;
+
+ COSTPRICE  SALEPRICE SALEPRICE-COSTPRICE
+---------- ---------- -------------------
+  32000000   42000000            10000000
+    500000     700000              200000
+    700000     900000              200000
+   1000000    1900000              900000
+  75000000  150000000            75000000
+    750000    1500000              750000
+    300000     400000              100000
+
+7 rows selected.
+
+SQL> select ModelName from car order by ModelName;
+
+MODELNAME
+--------------------
+Chiron
+CityRS
+Etios
+Huracan
+Scross
+Sonata
+Swift
+
+7 rows selected.
