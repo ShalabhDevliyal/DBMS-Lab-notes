@@ -1,3 +1,5 @@
 # DBMS-Lab-notes
 
-This Repo Contains DBMS Lab Sheets assigned to us by our college and their solutions.
+This Repo Contains DBMS Lab Sheets assigned to us by our college professor and their solutions.Ff
+
+# Free to use
