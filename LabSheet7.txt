@@ -1,0 +1,89 @@
+  
+SQL> show user
+USER is "VIRUS"
+SQL> insert into One values('A1','DDN');
+
+1 row created.
+
+SQL> insert into One values('A2','HRD');
+
+1 row created.
+
+SQL> insert into One values('A3','HLD');
+
+1 row created.
+
+SQL> insert into One values('A4','MRT');
+
+1 row created.
+
+SQL> insert into Two values('A1','Cricket');
+
+1 row created.
+
+SQL> insert into Two values('A1','Songs');
+
+1 row created.
+
+SQL> insert into Two values('A4','Painting');
+
+1 row created.
+
+SQL> insert into Two values('A3','Painting');
+
+1 row created.
+
+SQL> insert into Two values('A2','Trekking');
+
+1 row created.
+
+SQL> insert into Two values('A3','Skating');
+
+1 row created.
+
+SQL> select * from One ;
+
+NAME                 CITY
+-------------------- --------------------
+A1                   DDN
+A2                   HRD
+A3                   HLD
+A4                   MRT
+
+SQL> select* from Two;
+
+NAME                 HOBBY
+-------------------- --------------------
+A1                   Cricket
+A1                   Songs
+A4                   Painting
+A3                   Painting
+A2                   Trekking
+A3                   Skating
+
+6 rows selected.
+
+
+-> Join is a cartesian product followed by a condition 
+-> It joins the details of two tables such that they are displayed in a single table
+==>TYPES OF JOIN
+
+1> EQUI JOIN
+2> NATURAL JOIN
+3> OUTER JOIN  -----1> Left outer join
+               -----2> Right outer join
+               -----3> Full outer join
+4> Self join
+
+
+===1> Equi join -> In equi join the join is basis of some equality conditions
+
+||||| Select * from one,two where One.name=Two.name
+
+
+
+
+
+
+==> Natural join can be performed only if joining column have same name.
+
